@@ -1,0 +1,42 @@
+doctype html
+html(lang="en")
+    head
+        title User Registration
+        script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+        script.
+            (function($) {
+                $(window).load(function() {
+                    $('form').on('submit', function(evt) {
+                        evt.preventDefault();
+                        var pass = $('input.password').val();
+                        var cPass = $('input.confirmPassword').val();
+                        
+                        if(pass == cPass) {
+                            $(this).unbind('submit').submit();
+                        } else {
+                            alert('Passwords must match');
+                        }
+                    });
+                });
+            })(jQuery);
+    body
+        h1 Jade - node template engine
+        #container.col
+            if youAreUsingJade
+                p You are amazing
+            else
+                p Get on it!
+            p.
+                Jade is a terse and simple templating language with a
+                strong focus on performance and powerful features.
+            form(method='post', action='/users/register')
+                label(class='username') Username &nbsp;
+                input(type='text', name='username', class='username')
+                br
+                label(class='password') Password &nbsp;
+                input(type='password', name='password', class='password')
+                br
+                label(class='confirmPassword') Confirm Password &nbsp;
+                input(type='password', name='confirmPassword', class='confirmPassword')
+                br
+                input(type='submit', class='submit')
